@@ -75,7 +75,8 @@ class _LocationInputState extends State<LocationInput> {
           LocationData(address: address, latitude: lat, longitude: lng);
     }
     if (mounted) {
-      final StaticMapProvider staticMapViewProvider = StaticMapProvider(apiKey);
+      final StaticMapProvider staticMapViewProvider =
+          StaticMapProvider(apiKey);
       final Uri staticMapUri = staticMapViewProvider.getStaticUriWithMarkers([
         Marker('position', 'Position', _locationData.latitude,
             _locationData.longitude)
@@ -97,7 +98,10 @@ class _LocationInputState extends State<LocationInput> {
     final uri = Uri.https(
       'maps.googleapis.com',
       '/maps/api/geocode/json',
-      {'latlng': '${lat.toString()},${lng.toString()}', 'key': apiKey},
+      {
+        'latlng': '${lat.toString()},${lng.toString()}',
+        'key': apiKey
+      },
     );
     final http.Response response = await http.get(uri);
     final decodedResponse = json.decode(response.body);
